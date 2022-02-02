@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Gate;
 class CentroController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Centro::class, 'centro');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,6 +41,7 @@ class CentroController extends Controller
      */
     public function store(Request $request)
     {
+
         $centro = json_decode($request->getContent(), true);
 
         $centro = Centro::create($centro);
@@ -61,9 +72,17 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
-        if (! Gate::allows('update-centro', $centro)) {
-            abort(403);
+        /*
+        if ($request->user()->cannot('update', $centro)) {
+            abort(403, "No eres coordinador de este centro");
         }
+
+        Hace lo mismo que el authorize de abajo
+
+        $this->authorize('update', $centro);
+        */
+
+
         $centroData = json_decode($request->getContent(), true);
         $centro->update($centroData);
 
