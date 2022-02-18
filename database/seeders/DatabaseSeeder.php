@@ -13,8 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\User::truncate();
         \App\Models\User::factory(10)->create();
 
-        \App\Models\Nota::factory(2)->create();
+        //Se llama al seeder de Nota
+        $this->call([
+            NotaSeeder::class,
+        ]);
     }
 }

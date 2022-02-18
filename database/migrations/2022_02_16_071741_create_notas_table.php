@@ -15,10 +15,10 @@ class CreateNotasTable extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('materia_id');
-            $table->integer('evaluacion');
-            $table->integer('nota');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('materia_id')->unsigned();
+            $table->integer('evaluacion')->unsigned();
+            $table->integer('nota')->unsigned();
             $table->timestamps();
         });
     }

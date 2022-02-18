@@ -3,11 +3,7 @@
 use App\Http\Controllers\API\CentroController;
 use App\Http\Controllers\API\NivelController;
 
-
-
 use App\Http\Controllers\API\falta_profesorController;
-
-
 
 use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\TutorizadoController;
@@ -28,6 +24,8 @@ use Tqdev\PhpCrudApi\Config;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +60,6 @@ Route::post('tokens/create', function (Request $request) {
 
 // Route::get('centros/indexOD', [CentroController::class, 'indexOD'])->middleware('auth:sanctum');
 
-Route::get('/users', function () {
-    return new NotaResource(Nota::paginate(20));
-});
-
 Route::middleware('auth:sanctum')->
     apiResource('centros', CentroController::class)
 ;
@@ -76,7 +70,6 @@ Route::apiResource('niveles', NivelController::class)
 ->parameters([
     'niveles' => 'nivel'
 ]);
-
 
 
 Route::apiResource('faltas_profesores', falta_profesorController::class)
@@ -90,7 +83,6 @@ Route::middleware('auth:sanctum')->
 Route::apiResource('tutorizados', TutorizadoController::class);
 
 
-
 Route::apiResource('materias', MateriaController::class);
 
 Route::apiResource('periodosLectivos', PeriodoLectivoController::class);
@@ -99,6 +91,8 @@ Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
     'materiasmatriculadas' => 'materiaMatriculada'
 
 ]);
+
+Route::apiResource('notas', NotaController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

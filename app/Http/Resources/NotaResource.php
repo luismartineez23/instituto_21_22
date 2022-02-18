@@ -14,6 +14,11 @@ class NotaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return array(
+            'user_id' => new UserResource($this->user),
+            'materia_id' => new MateriaResource($this->materia),
+            'evaluacion' => $this->evaluacion,
+            'nota' => $this->nota
+        );
     }
 }

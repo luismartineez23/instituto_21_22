@@ -16,7 +16,7 @@ class Nota extends Model
         'nota'
     ];
 
-    public function user(){
+    public function user(){ //Al llamarse user no es necesario llamar a la fk user_id si pusiera alumno si
         return $this->belongsTo(User::class, 'user_id');
     }
 
