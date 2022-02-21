@@ -15,6 +15,7 @@ class NotaResource extends JsonResource
     public function toArray($request)
     {
         return array(
+            'id' => $this->id,
             'user_id' => new UserResource($this->user),
             'materia_id' => new MateriaResource($this->materia),
             'evaluacion' => $this->evaluacion,

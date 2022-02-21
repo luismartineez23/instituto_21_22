@@ -92,7 +92,7 @@ Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
 
 ]);
 
-Route::apiResource('notas', NotaController::class);
+Route::middleware('auth:sanctum')->apiResource('notas', NotaController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -22,7 +22,7 @@ class NotaController extends Controller
      */
     public function index()
     {
-        return NotaResource::collection(Nota::paginate(20));
+       return NotaResource::collection(Nota::paginate(20));
     }
 
     /**
