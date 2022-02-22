@@ -28,6 +28,8 @@ use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -96,6 +98,8 @@ Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
 ]);
 
 Route::apiResource('cursos', CursoController::class);
+
+Route::middleware('auth:sanctum')->get('/cursos/{cursoid}', [CursoController::class]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

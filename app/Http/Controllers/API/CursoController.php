@@ -42,6 +42,7 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
+        $this->authorize('view', $curso);
         return new CursoResource($curso);
     }
 
