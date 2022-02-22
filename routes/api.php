@@ -97,7 +97,7 @@ Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
 
 ]);
 
-Route::apiResource('cursos', CursoController::class);
+Route::middleware('auth:sanctum')->apiResource('cursos', CursoController::class);
 
 Route::middleware('auth:sanctum')->get('/cursos/{cursoid}', [CursoController::class]);
 
