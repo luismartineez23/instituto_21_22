@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CursoResource;
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class CursoController extends Controller
 {
@@ -70,5 +72,15 @@ class CursoController extends Controller
     public function destroy(Curso $curso)
     {
         $curso->delete();
+    }
+
+    public function aulavirtual(){
+        $response = Http::get('https://aulavirtual.murciaeduca.es/webservice/rest/server.php', [
+            'wstoken' => 'f14ada8afd1fb9980284fa9a0c0debfd',
+            'wsfunction' => 'core_enrol_get_users_courses',
+            'moodlewsrestformat' => 'json',
+            'userid' => Auth::user()->usuario_av
+        ]);
+        return $response;
     }
 }
